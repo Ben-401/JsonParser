@@ -128,9 +128,9 @@ int main(int argc, char** argv) {
             if (line[9] == 'c') { // WILL NOT RUN SINCE C DOESN'T EXIST
                 structureArray[0].data.u = 5;
             }
-            //            cout << line[9] << endl; // PRINTS OUT THE 9TH ELEMENT OF LINE e.g. n,u,t,d
-            //            cout << line << endl; // Prints out EVERYTHING
-            //            cout << structureArray[0].data.d << endl;
+            // cout << line[9] << endl; // PRINTS OUT THE 9TH ELEMENT OF LINE e.g. n,u,t,d
+            // cout << line << endl; // Prints out EVERYTHING
+            // cout << structureArray[0].data.d << endl;
         }
         jsonFile.close();
     } else {
