@@ -8,13 +8,13 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>sensors [modified].json</itemPath>
+      <itemPath>sensors.json</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
-      <itemPath>sensors [modified].json</itemPath>
-      <itemPath>sensors.json</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
