@@ -103,7 +103,7 @@ int main(int argc, char** argv) {
 
     //    fstream is used to allow INPUT AND OUTPUT TO FILES
     //    fstream jsonFile("sensors [modified].json"); USED FOR TESTING A SMALLER SAMPLE
-    fstream jsonFile("sensors.json"); // USED FOR TESTING A SMALLER SAMPLE
+    fstream jsonFile("sensors.json"); // USED FOR TESTING A SAMPLE
 
     //    sensorIdentifier[0].name = 101;
     //    sensorIdentifier[0].data.d = "Testing";
@@ -117,8 +117,8 @@ int main(int argc, char** argv) {
     if (jsonFile.is_open()) { // DETECTS IF THE FILE IS OPEN
         int arrayNumber = 0;
         while (getline(jsonFile, line)) {
-            if ((line.length() != 1)&&(line.find_last_of('{') != -1)) {
-                // cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
+            if ((line.length() != 1)&&(line.find_last_of('{') != -1)) { //USED FOR UNIQUELY IDENTIFYING OBJECT IDENTIFIER LINE
+//                 cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                 /*
                  * In summary, the code below deletes everything that isn't a number and then converts it to an integer
                  */
@@ -127,17 +127,18 @@ int main(int argc, char** argv) {
                     line.erase(markedCharPosition, 1); // Deletes the Character
                     // cout << line << endl;
                 }
-               // cout << stoi(line) << endl;
-                structureArray[arrayNumber].name=stoi(line); // BUGGED: DOESN'T ITERATE PROPERLY! CONTINOUSLY ASSIGNS TO structureArray[0]
-                
+                // NOTE THAT STOI CONVERTS FROM STRING TO INTEGER
+                // cout << stoi(line) << endl;
+                structureArray[arrayNumber].name=stoi(line);
+                arrayNumber++;
+                // cout << "NUMBER OF OBJECTS: " << arrayNumber << endl;
             }
-
-            lineProcessor(line);
+            
+            //lineProcessor(line);
             /*
              * Processes the Lines, looking for attributes and performs appropriate operations such as as assigning
              * them to structures.
              */
-            arrayNumber+1;
             if (line[9] == 'c') { // WILL NOT RUN SINCE C DOESN'T EXIST
                 structureArray[0].data.u = 5;
             }
@@ -148,6 +149,10 @@ int main(int argc, char** argv) {
         jsonFile.close();
     } else {
         cout << "Unable to open file";
+    }
+    
+    for (int i = 0; i <109; i++){
+        cout << structureArray[i].name << "\n";
     }
     // LEARN TO ITERATE OVER OBJECTS BY PRINTING OUT THE IDENTIFIER E.G. 100, 101
     // USE DATA STRUCTURES http://www.cplusplus.com/doc/tutorial/structures/
