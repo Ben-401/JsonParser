@@ -19,18 +19,10 @@
 
 using namespace std;
 
-
 void lineProcessor(string line) {
-    
-    if ((line.length() != 1)&&(line.find_last_of('{') != -1)) {
-        /* 
-         * Detects if the line's length is greater than one and contains a "{" AKA OPENING CURLY BRACE.
-         * This allows it to find all the names to be placed into the identifier.
-         * SUCCESSFULLY TESTED
-         */
-        cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
-    }
-    
+
+
+
     switch (line[9]) {
         case 'n': // Detects if the 9th Element is n (i.e. Attribute is n)
             //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
@@ -110,7 +102,6 @@ int main(int argc, char** argv) {
     sensorIdentifier structureArray[1000];
 
     //    fstream is used to allow INPUT AND OUTPUT TO FILES
-
     //    fstream jsonFile("sensors [modified].json"); USED FOR TESTING A SMALLER SAMPLE
     fstream jsonFile("sensors.json"); // USED FOR TESTING A SMALLER SAMPLE
 
@@ -121,17 +112,32 @@ int main(int argc, char** argv) {
     //    sensorIdentifier[1].name = 99;
     //    sensorIdentifier[1].data.d = "Testing2";
     //    sensorIdentifier[1].data.t = 5;
-
+    
 
     if (jsonFile.is_open()) { // DETECTS IF THE FILE IS OPEN
+        int arrayNumber = 0;
         while (getline(jsonFile, line)) {
+            if ((line.length() != 1)&&(line.find_last_of('{') != -1)) {
+                // cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
+                /*
+                 * In summary, the code below deletes everything that isn't a number and then converts it to an integer
+                 */
+                for (int i = 0; i < 4; i++) {
+                    int markedCharPosition = line.find_first_of(":{\""); // Position of Character to be deleted
+                    line.erase(markedCharPosition, 1); // Deletes the Character
+                    // cout << line << endl;
+                }
+               // cout << stoi(line) << endl;
+                structureArray[arrayNumber].name=stoi(line); // BUGGED: DOESN'T ITERATE PROPERLY! CONTINOUSLY ASSIGNS TO structureArray[0]
+                
+            }
 
             lineProcessor(line);
             /*
              * Processes the Lines, looking for attributes and performs appropriate operations such as as assigning
              * them to structures.
              */
-
+            arrayNumber+1;
             if (line[9] == 'c') { // WILL NOT RUN SINCE C DOESN'T EXIST
                 structureArray[0].data.u = 5;
             }
@@ -143,7 +149,6 @@ int main(int argc, char** argv) {
     } else {
         cout << "Unable to open file";
     }
-
     // LEARN TO ITERATE OVER OBJECTS BY PRINTING OUT THE IDENTIFIER E.G. 100, 101
     // USE DATA STRUCTURES http://www.cplusplus.com/doc/tutorial/structures/
     // https://www.programiz.com/cpp-programming/structure
