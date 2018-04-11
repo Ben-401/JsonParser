@@ -221,8 +221,6 @@ int main(int argc, char** argv) {
         cout << structureArray[i].name << ":" << " G: " << structureArray[i].data.g << endl; //SOME STRINGS ARE EMPTY
         cout << structureArray[i].name << ":" << " W: " << structureArray[i].data.w << endl;
     }
-    // LEARN TO ITERATE OVER OBJECTS BY PRINTING OUT THE IDENTIFIER E.G. 100, 101
-    // SSCANF FUNCTION C++?
 
     return 0;
 }
