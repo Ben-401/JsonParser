@@ -20,6 +20,7 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+    int arrayNumber = 0;
     string n;
     string line;
 
@@ -47,12 +48,11 @@ int main(int argc, char** argv) {
     sensorIdentifier structureArray[1000];
 
     //    fstream is used to allow INPUT AND OUTPUT TO FILES
-    //    fstream jsonFile("sensors [modified].json"); USED FOR TESTING A SMALLER SAMPLE
-    fstream jsonFile("sensors.json"); // USED FOR TESTING A SAMPLE
+    //    fstream jsonFile("sensors [modified].json"); // USED FOR TESTING A SMALLER SAMPLE
+     fstream jsonFile("sensors.json"); // USED FOR TESTING A SAMPLE
 
-    
     if (jsonFile.is_open()) { // DETECTS IF THE FILE IS OPEN
-        int arrayNumber = 0;
+        
         while (getline(jsonFile, line)) {
             if ((line.length() != 1)&&(line.find_last_of('{') != -1)) { //USED FOR UNIQUELY IDENTIFYING OBJECT IDENTIFIER LINE
                 // cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
@@ -66,17 +66,17 @@ int main(int argc, char** argv) {
                 // cout << stoi(line) << endl;
                 structureArray[arrayNumber].name = stoi(line);
                 arrayNumber++; //Switches to the next object
-                // cout << "NUMBER OF OBJECTS: " << arrayNumber << endl;
+                //cout << "NUMBER OF OBJECTS: " << arrayNumber << endl;
             }
             switch (line[9]) {
-                case 'n': // Detects if the 9th Element is n (i.e. Attribute is n)
+                case 'n': // Executes if the 9th Element is n (i.e. Attribute is n)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     line.erase((line.find("        \"n\": \"")), 14); // Deletes: ["n": ] (8 White Spaces)
                     line.erase(line.find_last_of('\"'),2); //Erases [",]
                     //cout << line << endl;
                     structureArray[arrayNumber - 1].data.n = line; //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 'u': // Detects if the 9th Element is u (i.e. Attribute is U)
+                case 'u': // Executes if the 9th Element is u (i.e. Attribute is U)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     for (int i = 0; i < 5; i++) {
                         int markedCharPosition = line.find_first_of(":u\","); // Position of Character to be deleted
@@ -85,7 +85,7 @@ int main(int argc, char** argv) {
                     }
                     structureArray[arrayNumber - 1].data.u = stoi(line); //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 't': // Detects if the 9th Element is t (i.e. Attribute is T)
+                case 't': // Executes if the 9th Element is t (i.e. Attribute is T)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     if (line.find("null,") != -1) { //IF T IS NULL
                         structureArray[arrayNumber - 1].data.t = 0;
@@ -98,21 +98,21 @@ int main(int argc, char** argv) {
                         structureArray[arrayNumber - 1].data.t = stoi(line); //ArrayNumber-1 is to correct a bug in code
                     }
                     break;
-                case 'd': // Detects if the 9th Element is d (i.e. Attribute is d)
+                case 'd': // Executes if the 9th Element is d (i.e. Attribute is d)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     line.erase((line.find("        \"d\": \"")), 14); // Deletes: ["d": ] (8 White Spaces)
                     line.erase(line.find_last_of('\"'),2); //Erases [",]
                     //cout << line << endl;
                     structureArray[arrayNumber - 1].data.d = line; //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 'z': // Detects if the 9th Element is z (i.e. Attribute is Z)
+                case 'z': // Executes if the 9th Element is z (i.e. Attribute is Z)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     line.erase((line.find("        \"z\": \"")), 14); // Deletes: ["z": ] (8 White Spaces)
                     line.erase(line.find_last_of('\"'),2); //Erases [",]
                     //cout << line << endl;
                     structureArray[arrayNumber - 1].data.z = line; //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 's': // Detects if the 9th Element is s (i.e. Attribute is S)
+                case 's': // Executes if the 9th Element is s (i.e. Attribute is S)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     for (int i = 0; i < 5; i++) {
                         int markedCharPosition = line.find_first_of(":s\","); // Position of Character to be deleted
@@ -121,7 +121,7 @@ int main(int argc, char** argv) {
                     }
                     structureArray[arrayNumber - 1].data.s = stoi(line); //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 'e': // Detects if the 9th Element is e (i.e. Attribute is E)
+                case 'e': // Executes if the 9th Element is e (i.e. Attribute is E)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     for (int i = 0; i < 5; i++) {
                         int markedCharPosition = line.find_first_of(":e\","); // Position of Character to be deleted
@@ -130,14 +130,14 @@ int main(int argc, char** argv) {
                     }
                     structureArray[arrayNumber - 1].data.e = stoi(line); //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 'b': // Detects if the 9th Element is B (i.e. Attribute is B)
+                case 'b': // Executes if the 9th Element is B (i.e. Attribute is B)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     line.erase((line.find("        \"b\": \"")), 14); // Deletes: ["b": ] (8 White Spaces)
                     line.erase(line.find_last_of('\"'),2); //Erases [",]
                     //cout << line << endl;
                     structureArray[arrayNumber - 1].data.b = line; //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 'p': // Detects if the 9th Element is P (i.e. Attribute is P)
+                case 'p': // Executes if the 9th Element is P (i.e. Attribute is P)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     for (int i = 0; i < 5; i++) {
                         int markedCharPosition = line.find_first_of(":p\","); // Position of Character to be deleted
@@ -146,7 +146,7 @@ int main(int argc, char** argv) {
                     }
                     structureArray[arrayNumber - 1].data.p = stoi(line); //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 'm': // Detects if the 9th Element is M (i.e. Attribute is M)
+                case 'm': // Executes if the 9th Element is M (i.e. Attribute is M)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     if (line.find_first_of("0123456789") == -1) { // IF A NUMBER CAN'T BE FOUND
                         structureArray[arrayNumber - 1].data.m = 0;
@@ -160,7 +160,7 @@ int main(int argc, char** argv) {
                         structureArray[arrayNumber - 1].data.m = stoi(line); //ArrayNumber-1 is to correct a bug in code
                     }
                     break;
-                case 'x': // Detects if the 9th Element is X (i.e. Attribute is X)
+                case 'x': // Executes if the 9th Element is X (i.e. Attribute is X)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     if (line.find_first_of("0123456789") == -1) { // IF A NUMBER CAN'T BE FOUND
                         structureArray[arrayNumber - 1].data.m = 0;
@@ -175,14 +175,14 @@ int main(int argc, char** argv) {
                         structureArray[arrayNumber - 1].data.x = stod(line); //ArrayNumber-1 is to correct a bug in code
                     }
                     break;
-                case 'g': // Detects if the 9th Element is G (i.e. Attribute is G)
+                case 'g': // Executes if the 9th Element is G (i.e. Attribute is G)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     line.erase((line.find("        \"g\": \"")), 14); // Deletes: ["g": ] (8 White Spaces)
                     line.erase(line.find_last_of('\"'),2); //Erases [",]
                     //cout << line << endl;
                     structureArray[arrayNumber - 1].data.g = line; //ArrayNumber-1 is to correct a bug in code
                     break;
-                case 'w': // Detects if the 9th Element is W (i.e. Attribute is W)
+                case 'w': // Executes if the 9th Element is W (i.e. Attribute is W)
                     //cout << line << endl; // THIS LINE IS TO BE USED FOR TESTING PURPOSES AND HAS NO REAL FUNCTION
                     if (line.find("false")!=-1){ //Detects if true has been found in the string
                         structureArray[arrayNumber - 1].data.w = false;
@@ -204,9 +204,9 @@ int main(int argc, char** argv) {
     } else {
         cout << "Unable to open file";
     }
-
-    for (int i = 0; i < 109; i++) { //TESTERS
-        cout << structureArray[i].name << endl;
+    
+    for (int i = 0; i < arrayNumber; i++) { //TESTERS
+        cout << "\nFAST Message ID: "<< structureArray[i].name << endl;
         cout << structureArray[i].name << ":" <<" N: " << structureArray[i].data.n << endl;
         cout << structureArray[i].name << ":" <<" U: " << structureArray[i].data.u << endl;
         cout << structureArray[i].name << ":" << " T: " << structureArray[i].data.t << endl;
@@ -224,4 +224,3 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-
