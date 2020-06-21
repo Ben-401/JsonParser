@@ -5,16 +5,16 @@ All other files and contributions were made by Zhi (Tom) Lin, acting on the advi
 
 Note that Ben Gerblich has also directly contributed code to this project and debugging assistance has been provided by Diana Barber.
 
->>
->> * ok
->>```code goes here
->>and two
->> finish three
+>
+> * ok
+>```code goes here
+>and two
+> finish three
 ```
->>
->> more
->> * second bullet
->> 
+>
+> more
+> * second bullet
+> 
 
->> * third bullet
+> * third bullet
 
