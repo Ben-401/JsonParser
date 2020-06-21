@@ -9,7 +9,8 @@ Note that Ben Gerblich has also directly contributed code to this project and de
 >> * ok
 >>```code goes here
 >>and two
->> finish three```
+>> finish three
+```
 >>
 >> more
 >> * second bullet
